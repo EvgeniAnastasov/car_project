@@ -3,10 +3,10 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.views import generic as views
 from django.shortcuts import render, redirect
-from django.views.generic import DeleteView, DetailView, CreateView, UpdateView
+from django.views.generic import DeleteView, DetailView, CreateView, UpdateView, TemplateView
 
-from cars.web_cars.forms import AddCarForm, EditCarForm, DeleteCarForm
-from cars.web_cars.models import Car, Like
+from cars.web_cars.forms import AddCarForm, EditCarForm, DeleteCarForm, CarPhotoForm
+from cars.web_cars.models import Car, Like, Photos
 
 UserModel = get_user_model()
 
@@ -180,3 +180,48 @@ class DeleteCarView(DeleteView):
 #     }
 #
 #     return render(request, 'car-delete.html', context)
+
+
+# class PhotoView(CreateView):
+#     template_name = 'photos.html'
+#     form_class = CarPhotoForm
+#     success_url = reverse_lazy('show index')
+#
+#     # def form_valid(self, form):
+#     #     car_photo = form.save(commit=False)
+#     #     car_photo.car = self.request.car
+#     #     car_photo.save()
+#     #
+#     #     return super().form_valid(form)
+#     #
+#
+#     # def get_context_data(self, **kwargs):
+#     #     context = super().get_context_data(**kwargs)
+#     #
+#     #     # car_photos = Photos.objects.filter(car_id=car.id)
+#     #     car_photos = Photos.objects.filter(car_id)
+#     #
+#     #     context['photos'] = car_photos
+#     #
+#     #     return context
+
+
+def car_photo(request, pk):
+    car = Car.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        form = CarPhotoForm(request.POST, request.FILES, instance=car)
+        if form.is_valid:
+            car = form.save(commit=False)
+            car.id = car.pk
+            car.save()
+            return redirect('show index')
+    else:
+        form = CarPhotoForm(instance=car)
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'photos.html', context)
+

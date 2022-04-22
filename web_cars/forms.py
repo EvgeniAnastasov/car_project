@@ -1,6 +1,6 @@
 from django import forms
 
-from cars.web_cars.models import Car
+from cars.web_cars.models import Car, Photos
 
 
 class AddCarForm(forms.ModelForm):
@@ -69,5 +69,12 @@ class DeleteCarForm(forms.ModelForm):
     class Meta:
         model = Car
         fields = '__all__'
+
+
+class CarPhotoForm(forms.ModelForm):
+    class Meta:
+        model = Photos
+        fields = "__all__"
+        # exclude = ('car_id',)
 
 

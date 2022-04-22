@@ -8,7 +8,6 @@ UserModel = get_user_model()
 
 
 class Car(models.Model):
-
     TYPES = [
         (None, 'Choose Car Type'),
         ('sedan', 'sedan'),
@@ -114,3 +113,24 @@ class Like(models.Model):
         UserModel,
         on_delete=models.CASCADE,
     )
+
+
+class Photos(models.Model):
+    car_photo = models.ImageField(
+        upload_to='photos',
+        null=True,
+        blank=True,
+        validators=(
+            MaxFileSizeInMbValidator(10),
+        ),
+    )
+
+    publication_date = models.DateTimeField(
+        auto_now_add=True,
+    )
+
+    car_id = models.ForeignKey(
+        Car,
+        on_delete=models.CASCADE,
+    )
+
