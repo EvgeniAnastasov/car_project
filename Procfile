@@ -1,1 +1,1 @@
-web: gunicorn cars.cars.wsgi
+web: gunicorn --pythonpath cars cars.wsgi
