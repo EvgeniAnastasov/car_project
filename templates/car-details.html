@@ -46,12 +46,17 @@
                 <div class="actionBtn">
                     <!-- Car Buttons -->
 
+
+
                     {% if is_owner %}
 
                         <a href="{% url 'car edit' car.pk %}" class="edit">Edit</a>
                         <a href="{% url 'car delete' car.pk %}" class="remove">Delete</a>
 
                     {% endif %}
+
+                    <a href="{% url 'car photos' car.pk %}" class="edit">Photos</a>
+
                 </div>
 
             </div>

@@ -31,9 +31,10 @@
 
                 {% else %}
 
+                    <li><a href="{% url 'add car' %}">Add Car</a></li>
                     <li><a href="{% url 'register user' %}">Register</a></li>
                     <li><a href="{% url 'log in user' %}">Login</a></li>
-                    <li><a href="{% url 'add car' %}">Add Car</a></li>
+
 
                 {% endif %}
             </ul>

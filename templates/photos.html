@@ -1,0 +1,49 @@
+{% extends 'base/base.html' %}
+{% block page_content %}
+
+<!--Create Page-->
+<section class="createPage">
+
+    <form method="POST" action="" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Add Photos</legend>
+            <div class="container">
+
+                <!-- Form for Adding Album -->
+
+                {{ form }}
+                {% csrf_token %}
+
+                <!-- Button for Adding Album -->
+                <button class="add-album" type="submit">Add Photo</button>
+            </div>
+        </fieldset>
+    </form>
+</section>
+
+{% endblock %}
+
+
+{#{% extends 'base/base.html' %}#}
+{#{% block page_content %}#}
+{##}
+{# <section id="detailsPage">#}
+{#        <div class="wrapper">#}
+{##}
+{#            <div class="albumCover">#}
+{##}
+{#                <!-- Car Image -->#}
+{#                    {% csrf_token %}#}
+{#                    {{ form }}#}
+{##}
+{#                    <img src="{{ photos.car_photo.url }}" alt="Car Image">#}
+{#                <h1>hello</h1>>#}
+{#                    <button class="add-album" type="submit">Add Photo</button>#}
+{##}
+{#            </div>#}
+{##}
+{#        </div>#}
+{#    </section>#}
+{##}
+{##}
+{#{% endblock %}#}
